@@ -1,5 +1,3 @@
-const { Telegraf } = require("telegraf");
-
 module.exports = {
     name: "ban",
     regex: /^(!|\/)(ban|бан)/,
