@@ -1,5 +1,5 @@
 module.exports = {
-    name: "ban",
+    name: "kick",
     regex: /^(!|\/)(kick|кик)/,
     perms: "moderation",
     run: async(ctx) => {
