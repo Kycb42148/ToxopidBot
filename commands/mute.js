@@ -12,13 +12,15 @@ module.exports = {
         if (['минут', 'минуту', 'minute', 'minutes', 'm', 'м'].includes(ctx.message.text.match(regex)[6])) time = 60;
         if (['дней', 'день', 'суток', 'сутки', 'day', 'days', 'd', 'д'].includes(ctx.message.text.match(regex)[6])) time = 86400;
 
+        const now = Date.now();
+
         if (await ctx.restrictChatMember(targetId, {
             can_send_messages: false,
             can_send_media_messages: false,
             can_send_polls: false,
             can_send_other_messages: false,
             can_add_web_page_previews: false,
-            until_date: (Date.now() / 1000 | 0) + count * time
-        })) return ctx.reply("Muted successfully", { reply_to_message_id: ctx.message.message_id });
+            until_date: (now / 1000 | 0) + count * time
+        })) return ctx.reply(`Muted until ${new Date(now + count * time * 1000).toUTCString()} successfully`, { reply_to_message_id: ctx.message.message_id });
     }
 }
