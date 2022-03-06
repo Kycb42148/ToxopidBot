@@ -20,7 +20,7 @@ module.exports = {
             can_send_polls: false,
             can_send_other_messages: false,
             can_add_web_page_previews: false,
-            until_date: (now / 1000 | 0) + count * time
+            until_date: (now / 1000) + count * time
         })) return ctx.reply(`Muted until ${new Date(now + count * time * 1000).toUTCString()} successfully`, { reply_to_message_id: ctx.message.message_id });
     }
 }
