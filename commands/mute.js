@@ -8,8 +8,6 @@ module.exports = {
         
         let time = 3600;
         const count = +ctx.message.text.match(regex)[4] || 1;
-        console.log(ctx.message.text.match(regex)[4]);
-        console.log(ctx.message.text.match(regex)[5]);
 
         if (['минут', 'минуту', 'minute', 'minutes', 'm', 'м'].includes(ctx.message.text.match(regex)[5])) time = 60;
         if (['дней', 'день', 'суток', 'сутки', 'day', 'days', 'd', 'д'].includes(ctx.message.text.match(regex)[5])) time = 86400;
