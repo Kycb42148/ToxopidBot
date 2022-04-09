@@ -19,7 +19,7 @@ for (const file of files){
 
 for (const [name, command] of commands){
     bot.hears(command.regex, async(ctx) => {
-        if (await check(ctx)){
+        if (await check(ctx, command.perms)){
             command.run(ctx);
         }
     });
