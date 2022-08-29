@@ -5,6 +5,10 @@ module.exports = {
     run: async(ctx) => {
         const targetId = ctx.message.reply_to_message.from.id;
         
-        if (await ctx.kickChatMember(targetId)) return ctx.reply("Banned successfully");
+        try {
+            if (await ctx.kickChatMember(targetId)) return ctx.reply("Banned successfully");
+        } catch (err) {
+            return ctx.reply("An error occurred: " + err.description);
+        }
     }
 }
