@@ -19,6 +19,6 @@ module.exports = {
         if (await ctx.restrictChatMember(targetId, {
             can_send_messages: false,
             until_date: ((now / 1000) + count * time)
-        })) return ctx.reply(`Muted until ${new Date(now + count * time * 1000).toUTCString()} successfully`, { reply_to_message_id: ctx.message.message_id });
+        })) return ctx.reply(`Muted until ${new Date(now + count * time * 1000).toLocaleString()} successfully`, { reply_to_message_id: ctx.message.message_id });
     }
 }
