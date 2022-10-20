@@ -6,7 +6,7 @@ module.exports = {
         const targetId = ctx.message.reply_to_message.from.id;
 
         const userInfo = await ctx.getChatMember(targetId);
-        if (userInfo.status !== 'member') return ctx.reply("User is administrator of this chat.");
+        if (['creator', 'administrator'].includes(userInfo.status)) return ctx.reply("User is administrator of this chat.");
 
         let time = 3600;
         const count = +ctx.message.text.match(module.exports.regex)[4] || 1;
