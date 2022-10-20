@@ -128,3 +128,6 @@ dist
 
 # JetBrains IDE project settings
 .idea
+
+# Bot config
+config.json
