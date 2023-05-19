@@ -3,9 +3,9 @@ module.exports = {
     regex: /^([!\/])(mute|мьют|мут) ?((\d+) ?(час|часов|ч|hour|hours|h|минут|минуту|minute|minutes|m|м|дней|день|д|day|days|d|суток|сутки)?)?/i,
     perms: "moderation",
     run: async(ctx) => {
-        const targetId = ctx.message.reply_to_message.from.id;
+        const target = ctx.message.reply_to_message.from;
 
-        const userInfo = await ctx.getChatMember(targetId);
+        const userInfo = await ctx.getChatMember(target.id);
         if (['creator', 'administrator'].includes(userInfo.status)) return ctx.reply("User is administrator of this chat.");
 
         let time = 3600;
@@ -16,9 +16,9 @@ module.exports = {
 
         const now = Date.now();
 
-        if (await ctx.restrictChatMember(targetId, {
+        if (await ctx.restrictChatMember(target.id, {
             can_send_messages: false,
             until_date: ((now / 1000) + count * time)
-        })) return ctx.reply(`Muted until ${new Date(now + count * time * 1000).toLocaleString()} successfully`, { reply_to_message_id: ctx.message.message_id });
+        })) return ctx.reply(`Muted ${target.first_name}${target.username? " (@" + target.username + ")" : ""} [${target.id}] until ${new Date(now + count * time * 1000).toLocaleString()} successfully`, { reply_to_message_id: ctx.message.message_id });
     }
 }
